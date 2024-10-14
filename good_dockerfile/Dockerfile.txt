@@ -1,0 +1,15 @@
+FROM python:3.9.7
+
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip && \
+    pip install --no-cache-dir flask && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY . /app
+
+RUN addgroup --system appgroup && adduser --system --group appuser
+USER appuser
+
+WORKDIR /app
+CMD ["python3", "app.py"]
