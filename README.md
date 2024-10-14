@@ -18,6 +18,7 @@ COPY . /app
 
 WORKDIR /app
 CMD ["python3", "app.py"]
+```
 
 Чем он плох?
 
@@ -31,6 +32,7 @@ CMD ["python3", "app.py"]
 
 Далее приведём код хорошего docker-файла:
 
+```dockerfile
 FROM python:3.9.7
 
 RUN apt-get update && apt-get install -y --no-install-recommends python3-pip && \
@@ -46,6 +48,7 @@ USER appuser
 
 WORKDIR /app
 CMD ["python3", "app.py"]
+```
 
 Что исправлено?
 
